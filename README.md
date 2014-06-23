@@ -6,6 +6,7 @@ Federal Data SDK built in the Swift programming language
 ### TODO:
 * Add XML and other text (e.g. HTML) support
 
+### Documentation
 Documentation for this SDK can be found at [http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK](http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK).
 
 Sample code for this SDK is coming soon.
