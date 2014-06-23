@@ -1,0 +1,155 @@
+---
+layout: page
+title: Beginner's Guide
+---
+  	<div class='limiter pad1y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+                <h1 class="title" id="page-title">Swift Federal Data SDK</h1>
+</div>
+</div>
+  	<div class='limiter pad0y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+This class is used to ease access to a variety of federal APIs (not just DOL's), providing a simple, easy to use interface that is consistent for all APIs that are used.
+<p><strong>Important:</strong> This SDK was built using pre-release technology.  This SDK is in beta until it has been successfully tested with a production release version of Apple's Swift language.  Because of this, if Apple makes any changes to the underlying language, tools, and/or compiler, this SDK may break until fixes are made.</p>
+<p><strong>note:</strong> To use DOL's API you must register at <a href="https://devtools.dol.gov/developer">https://devtools.dol.gov/developer</a> and request an API key for each application that will access the API. Registration and API keys are free. A separate API key is not necessary for each application, but if you reuse your key across multiple apps, <a href="http://developer.dol.gov/dataset/api-metrics-key">your apps' metrics</a> will be combined and of little value.</p>
+<p>API key requirements vary between federal agency's APIs</p>
+</div>
+</div>
+  	<div class='limiter pad0y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+<h2 class="subtitle">Creating An API Request Object</h2>
+<h3 class="subtitle">GovDataRequest(APIKey:APIHost:APIURL:)</h3>
+Initializes an API request for a given endpoint, minus the "method" piece and arguments.<br>
+<pre class="prettyprint">GovDataRequest(APIKey: String, APIHost: String, APIURL: String)</pre>
+<h4 class="subtitle">Parameters</h4>
+<table>
+	<thead>
+		<tr>
+			<th width="100">Name</th>
+			<th width="100">Optional / Required</th>
+			<th width="100">Data Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>APIKey</td>
+			<td><i>Optional</i></td>
+			<td>String</td>
+			<td>API Key or token, if required by the API</td>
+		</tr>
+		<tr>
+			<td>APIHost</td>
+			<td><i>Required</i></td>
+			<td>String</td>
+			<td>The hostname of the API (e.g. http://api.dol.gov)</td>
+		</tr>
+		<tr>
+			<td>APIURL</td>
+			<td><i>Optional</i></td>
+			<td>String</td>
+			<td>The part of the API endpoint URL between APIHost and the method (e.g. /V1)</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+  	<div class='limiter pad0y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+<h2 class="subtitle">Protocol</h2>
+<h3 class="subtitle">GovDataRequestProtocol</h3>
+The protocol your object must conform to when using the GovDataRequest object<br>
+<pre class="prettyprint">class className: GovDataRequestProtocol</pre>
+</div>
+</div>
+  	<div class='limiter pad0y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+<h2 class="subtitle">Setting General Properties</h2>
+<h3 class="subtitle">timeOut</h3>
+The timeOut interval to use when waiting for additional data.  The default value is 60.0.<br>
+<pre class="prettyprint">var timeOut: NSTimeInterval</pre>
+</div>
+</div>
+  	<div class='limiter pad0y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+<h2 class="subtitle">Required Delegate Methods</h2>
+<h3 class="subtitle">didCompleteWithError(errorMessage:)</h3>
+Returns to the delegate the error message from a failed API call (if any).<br>
+<pre class="prettyprint">func didCompleteWithError(errorMessage: String)</pre>
+<h4 class="subtitle">Return Values</h4>
+<table>
+	<thead>
+		<tr>
+			<th width="100">Name</th>
+			<th width="100">Data Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>errorMessage</td>
+			<td>String</td>
+			<td>Error Message returned from API call</td>
+		</tr>
+	</tbody>
+</table><br>
+<h3 class="subtitle">didCompleteWithDictionary(results:)</h3>
+Returns to the delegate the API response, parsed and presented as an NSDictionary object.<br>
+<pre class="prettyprint">didCompleteWithDictionary(results: NSDictionary)</pre>
+<h4 class="subtitle">Return Values</h4>
+<table>
+	<thead>
+		<tr>
+			<th width="100">Name</th>
+			<th width="100">Data Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>results</td>
+			<td>NSDictionary</td>
+			<td>The parsed API response</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+  	<div class='limiter pad0y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+<h2 class="subtitle">Sending the Request to the API</h2>
+<h3 class="subtitle">callAPIMethod(method:arguments:)</h3>
+Send the request to the API, including arguments.<br>
+<pre class="prettyprint">func callAPIMethod(method: String, arguments: Dictionary&lt;String,String&gt;)</pre>
+<h4 class="subtitle">Parameters</h4>
+<table>
+	<thead>
+		<tr>
+			<th width="100">Name</th>
+			<th width="100">Optional / Required</th>
+			<th width="100">Data Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>method</td>
+			<td><i>Required</i></td>
+			<td>String</td>
+			<td>The remaining portion of the URL endpoint, minus the arguments.  Unlike the APIURL, this may be likely to change as you use different datasets from the same source.</td>
+		</tr>
+		<tr>
+			<td>arguments</td>
+			<td><i>Required</i></td>
+			<td>Dictionary&lt;String,String&gt;</td>
+			<td>Key/value pairs of arguments to send to the API.</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+  	<div class='limiter pad0y pad4x clearfix'>
+  		<div class='col12 pad1y'>
+
+
+

@@ -1,0 +1,1375 @@
+/*
+Item Name : Responsive Mega Menu Complete Set
+Item URI : http://codecanyon.net/item/mega-menu-complete-set/152825
+Author URI : http://codecanyon.net/user/Pixelworkshop
+Version : 3.2
+*/
+
+/*
+
+TABLE OF CONTENTS
+
+01 MEGA MENU BAR
+02 MEGA MENU CONTAINERS
+03 DROP DOWN COLUMNS GRID
+04 FLY-OUT MENU
+05 MEGA MENU WEB ELEMENTS
+   1. General Typography
+   2. Lists
+   3. Custom Paragraphs
+   4. Video + Misc.
+   5. Images
+   6. Paragraph Icons
+   7. Social Icons
+   8. Form Elements
+   9. Tables
+06 DEFAULT THEMES, DARK & LIGHT (COMPULSORY)
+   1. Dark Menu Bar
+   2. Light Menu Bar
+   3. Dark Drop Down
+   4. Light Drop Down
+   5. Neutral Colored Elements
+      - Form Elements
+      - Tables
+07 ADDITIONAL THEMES (OPTIONNAL)
+   1. Blue
+   2. Brown
+   3. Cherry
+   4. Coffee
+   5. Green
+   6. Grey
+   7. Ocean
+   8. Orange
+   9. Pink
+   10. Purple
+   11. Red
+   12. Tan
+   13. Yellow
+08 VERTICAL MEGA MENU
+09 MOBILE DEVICES
+   1. Common Media Queries
+   2. Horizontal Mega Menu Media Queries
+   3. Vertical Mega Menu Media Queries
+
+*/
+
+
+
+
+/*
+	Layout container
+	The menu will automatically expand into your container.
+	"page_wrapper" and "page_wrapper_vertical" are just used to show how the menu fits,
+	those containers are not necessary, just put the menu into a container and it will
+	fit exactly to its dimensions.
+*/
+
+
+/*body {
+	background: url("../img/background.jpg");
+}*/
+.page_wrapper, .page_wrapper_vertical {
+	width: 860px;
+	margin: 36px auto;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	line-height:21px;
+}
+.menu_description {
+	color:#262626;
+	text-shadow:1px 1px 1px #ffffff;
+	padding-bottom: 36px;
+}
+.menu_description h1 {
+	margin-top: 24px;
+	font-size:24px;
+	line-height:38px;
+}
+.menu_description h2 {
+	font-size:18px;
+	line-height:24px;
+}
+.menu_description ul.description {
+	font-size:12px;
+	line-height:21px;
+	list-style: square;
+	margin: 0 0 0 15px;
+	padding: 0;
+}
+.menu_description a {
+	color: #888888;
+	text-decoration: none;
+}
+.page_wrapper_vertical {
+	width:960px;
+	margin: 36px auto;
+}
+.page_wrapper_vertical .menu_description {
+	float:left;
+	width: 760px;
+	margin-left: 40px;
+}
+.page_wrapper_vertical .menu_description h1 {
+	margin-top: -6px;
+}
+.page_wrapper_fixed {
+	margin: 70px auto;
+}
+/*@media only screen and (min-width: 768px) and (max-width: 984px) {
+	.page_wrapper, .page_wrapper_vertical {width:768px;}
+	.page_wrapper_vertical .menu_description {width: 500px;}
+}
+@media only screen and (max-width:767px) {
+	.page_wrapper, .page_wrapper_vertical {width:420px;}
+	.page_wrapper_vertical .menu_description {width: 100%;margin-left:0;}
+	.page_wrapper_vertical .menu_description h1 {margin-top: 24px;}
+}
+@media only screen and (max-width:479px) {
+	.page_wrapper, .page_wrapper_vertical {width:300px;}
+}
+
+*/
+
+
+/*  _______________________________________________
+
+    01 MEGA MENU BAR
+    _______________________________________________  */
+
+
+
+
+.megamenu_container {
+	width:100%;
+	height: 46px;
+ *height: 44px;
+	margin:0 auto;
+	position: relative;
+	z-index:9999;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;/*-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;*/
+}
+.megamenu {
+	list-style:none;
+	padding:0;
+	position:relative; /* For IE7 */
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	line-height:1;
+	margin-left: 0 !important;
+}
+.megamenu > li {
+	float:left;
+	margin:0;
+	border:none;
+	-webkit-transition: background 0.5s ease;
+	-moz-transition: background 0.5s ease;
+	-o-transition: background 0.5s ease;
+	-ms-transition: background 0.5s ease;
+	transition: background 0.5s ease;
+}
+.megamenu > li > a {
+	font-size:13px;
+	text-transform:uppercase;
+	/*outline:0;*/
+  text-decoration:none;
+	display:block;
+	padding: 14px 0px 18px 14px;
+}
+.megamenu > li .megamenu_drop {
+	padding-right:30px;
+	font-weight: bold;
+}
+.megamenu > li .no_megamenu_drop {
+	padding-right:15px;
+	font-weight: bold;
+}
+.megamenu li.megamenu_button {
+	display: none;
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	-ms-transition: none;
+	transition: none;
+}
+
+
+/* Right aligned menu item */
+		
+
+/*.megamenu_right a {
+	margin-right:5px !important;
+}*/
+/*  _______________________________________________
+
+    02 MEGA MENU CONTAINERS
+    _______________________________________________  */
+
+
+
+
+.megamenu li .dropdown_container, .megamenu li .dropdown_fullwidth, .megamenu li .dropdown_multilevel {
+	position: absolute;
+	margin:0;
+	padding-top:4px; /* 24px*/
+	padding-bottom:10px;
+	left:-9999em;
+	top:-9999em;
+	display: block;
+	zoom:1;
+	z-index:9998;
+	float: left;
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+}
+.megamenu li .dropdown_first {
+	margin-left:-1px;
+}
+.megamenu li .droplast_right {
+	margin-right:-1px;
+}
+/* Showing Drop Down on Mouse Hover */
+
+.megamenu li:hover .dropdown_container {
+	top:45px;
+	left:auto;
+}
+.megamenu li:hover .dropdown_fullwidth {
+	top:45px;
+	left:-1px;
+}
+.megamenu li .dropdown_right {
+	right:0;
+}
+.megamenu li:hover .dropdown_right {
+	top:45px;
+	left:auto;
+	right:0;
+}
+
+/*
+	Bigger containers need smaller padding values and
+	on the opposite, smaller containers will have
+	higher paddings. 
+	This makes the content within each kind of drop down 
+	equally distant from the left edge. 
+*/
+
+.megamenu .dropdown_1column {
+	width: 8.3334%;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+.megamenu .dropdown_2columns {
+	width: 16.6667%;
+	padding-left: 1.8333%;
+	padding-right: 1.8333%;
+}
+.megamenu .dropdown_3columns {
+	width: 25%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+}
+.megamenu .dropdown_4columns {
+	width: 33.3334%;
+	padding-left: 1.333%;
+	padding-right: 1.333%;
+}
+.megamenu .dropdown_5columns {
+	width: 41.6667%;
+	padding-left: 1.166%;
+	padding-right: 1.166%;
+}
+.megamenu .dropdown_6columns {
+	width: 50%;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+.megamenu .dropdown_7columns {
+	width: 58.3334%;
+	padding-left: 0.833%;
+	padding-right: 0.833%;
+}
+.megamenu .dropdown_8columns {
+	width: 66.6667%;
+	padding-left: 0.666%;
+	padding-right: 0.666%;
+}
+.megamenu .dropdown_9columns {
+	width: 75%;
+	padding-left: 0.5%;
+	padding-right: 0.5%;
+}
+.megamenu .dropdown_10columns {
+	width: 83.3334%;
+	padding-left: 0.333%;
+	padding-right: 0.333%;
+}
+.megamenu .dropdown_11columns {
+	width: 91.6667%;
+	padding-left: 0.1666%;
+	padding-right: 0.1666%;
+}
+.megamenu .dropdown_12columns, .megamenu .dropdown_fullwidth {
+	width: 100%;
+}
+/*  _______________________________________________
+
+    03 DROP DOWN COLUMNS GRID
+    _______________________________________________  */
+
+
+
+
+.megamenu .col_1, .megamenu .col_2, .megamenu .col_3, .megamenu .col_4, .megamenu .col_5, .megamenu .col_6, .megamenu .col_7, .megamenu .col_8, .megamenu .col_9, .megamenu .col_10, .megamenu .col_11, .megamenu .col_12 {
+	float: left;
+	display:inline;
+	position: relative;
+	margin-left: 2%;
+	margin-right: 2%;
+	/* 
+	Rounding error with IE7.
+	Lower margin values will absorb the difference.
+	*/
+	*margin-left: 1.9%;
+ *margin-right: 1.9%;
+}
+.megamenu .col_1 {
+	width:4.33%;
+}
+.megamenu .col_2 {
+	width:12.66%;
+}
+.megamenu .col_3 {
+	width:21%;
+}
+.megamenu .col_4 {
+	width:29.33%;
+}
+.megamenu .col_5 {
+	width:37.66%;
+}
+.megamenu .col_6 {
+	width:46%;
+}
+.megamenu .col_7 {
+	width:54.33%;
+}
+.megamenu .col_8 {
+	width:62.66%;
+}
+.megamenu .col_9 {
+	width:71%;
+}
+.megamenu .col_10 {
+	width:79.33%;
+}
+.megamenu .col_11 {
+	width:87.66%;
+}
+.megamenu .col_12 {
+	width:96%;
+}
+.megamenu .rowcontent {
+	clear:left;
+	/*
+	IE7 clear issue.
+	Display inline required.
+	*/
+	*display:inline;
+}
+/*  _______________________________________________
+
+    04 FLY-OUT MENU
+    _______________________________________________  */
+
+
+
+
+.megamenu .dropdown_flyout, .megamenu .dropdown_flyout .dropdown_flyout_level {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	z-index: 9;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.megamenu .dropdown_flyout li {
+	float: left;
+	width: 92%;
+	padding: 3px 4% 3px 4%;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+}
+.megamenu .dropdown_flyout ul li {
+	width: 140px;
+	padding: 3px 10px 3px 10px;
+}
+.megamenu .dropdown_flyout a {
+	display: block;
+	width: 10em;
+}
+.megamenu .dropdown_flyout .dropdown_flyout_level {
+	position: absolute;
+	margin:15px 0 0 4px;
+	padding:6px;
+	left: -9999em;
+	top:-9999em;
+	display: block;
+	zoom:1;
+	float: left;
+}
+.megamenu .dropdown_flyout li:hover > .dropdown_flyout_level {
+	left:95%;
+	top:-21px;
+}
+.megamenu .dropdown_flyout li:hover > .dropdown_flyout_level_left {
+	left:-108%;
+	right:100%;
+}
+/*  _______________________________________________
+
+    05 MEGA MENU WEB ELEMENTS
+    _______________________________________________  */
+
+
+
+
+/* 1. General Typography */
+
+
+.megamenu p, .megamenu h1, .megamenu h2, .megamenu h3, .megamenu h4, .megamenu h5, .megamenu h6 {
+	padding:0;
+	margin:0 0 20px; /* 	margin:0 0 20px;*/
+}
+.megamenu > li > div a {
+	text-decoration: none;
+	outline: none;
+}
+.megamenu > li > div a:hover {
+	-webkit-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	-o-transition: color 0.3s;
+	-ms-transition: color 0.3s;
+	transition: color 0.3s;
+}
+.megamenu p {
+	font-size:14px;
+	line-height:16px;
+}
+.megamenu h1, .megamenu h2, .megamenu h3, .megamenu h4, .megamenu h5, .megamenu h6 {
+	font-weight: bold;
+}
+.megamenu h1 {
+	font-size: 18px; /* 24px; */
+	line-height: 20px; /* 28px; */
+}
+.megamenu h2 {
+	font-size: 14px; /* 16px; */
+	line-height: 16px; /* 20px; */
+	margin:10px 0;
+	padding-bottom: 5px;
+	border-bottom: solid 1px #666;
+}
+.megamenu h3 {
+	font-size: 14px; /* 16px; */
+	line-height: 16px; /* 20px; */
+	margin:10px 0;
+	padding-bottom: 5px;
+	border-bottom: solid 1px #666;
+}
+.megamenu h4 {
+	font-size: 14px;
+	line-height: 18px;
+	margin-bottom:14px;
+}
+.megamenu h5 {
+	font-size: 12px;
+	line-height: 18px;
+	margin-bottom:14px;
+}
+.megamenu h6 {
+	font-size: 10px;
+	line-height: 16px;
+	margin-bottom:14px;
+	text-transform:uppercase;
+}
+/* 2. Lists */
+
+
+.megamenu li ul, .megamenu li ol {
+	padding:0;
+	margin:14px 0 0 16px;
+	font-style:normal !important;
+}
+.megamenu li ul {
+	list-style:disc;
+}
+.megamenu li ol {
+	list-style:decimal;
+ *margin-left: 22px;
+}
+.megamenu li ul li,  .megamenu li ol li {
+	font-size:14px;
+	line-height:18px;
+	font-style:normal !important;
+	position:relative;
+	padding:0 0 7px 0;
+	margin:0;
+	float:none;
+	text-align:left;
+}
+.megamenu li .list_unstyled {
+	list-style: none;
+	margin-left:0;
+	font-style:normal !important;
+}
+.megamenu ul li .list {
+	font-style:normal !important;
+}
+/* 3. Custom Paragraphs */
+
+
+.megamenu .blue, .megamenu .grey, .megamenu .orange, .megamenu .dark, .megamenu .purple {
+	padding:0 0 0 15px;
+	margin-bottom:18px;
+	border-left: solid 5px;
+}
+.megamenu .blue {
+	border-left-color:#929292;
+}
+.megamenu .grey {
+	border-left-color:#ECE7BA;
+}
+.megamenu .orange {
+	border-left-color:#BD4F33;
+}
+.megamenu .dark {
+	border-left-color:#3F3F3F;
+}
+.megamenu .purple {
+	border-left-color:#382E34;
+}
+.megamenu .black_box {
+	text-shadow:none;
+	padding:10px;
+	margin-top:-10px;
+ *margin-top:0;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+}
+/* 4. Video + Misc. */
+
+
+.megamenu .video_container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+	margin-bottom: 24px;
+}
+.megamenu .video_container iframe,  .megamenu .video_container object,  .megamenu .video_container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border:none;
+}
+.megamenu .dropcap {
+	display:block;
+	float:left;
+	font-size:42px;
+	line-height:36px;
+	margin:4px 8px 0 0;
+}
+.megamenu hr {
+	width: 100%;
+	height: 0;
+ *height:2px;
+	border:none;
+	margin-bottom: 24px;
+}
+/* 5. Images */
+
+
+.megamenu img {
+	max-width: 100%;
+	height: auto;
+	padding: 3px;
+	border: solid 1px #ccc;
+	margin-bottom: 18px;
+}
+.megamenu img.img_left {
+	float: left;
+	margin-right: 18px;
+}
+.megamenu img.img_right {
+	float: right;
+	margin-left: 18px;
+}
+/*.megamenu img {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	opacity:0.7;
+	-webkit-transition: opacity 0.3s ease-in-out; 
+	-moz-transition: opacity 0.3s ease-in-out; 
+	-o-transition: opacity 0.3s ease-in-out; 
+	-ms-transition: opacity 0.3s ease-in-out; 
+	transition: opacity 0.3s ease-in-out;  
+}*/
+.megamenu img:hover {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity:1;
+	-webkit-transition: opacity 0.3s ease-in-out;
+	-moz-transition: opacity 0.3s ease-in-out;
+	-o-transition: opacity 0.3s ease-in-out;
+	-ms-transition: opacity 0.3s ease-in-out;
+	transition: opacity 0.3s ease-in-out;
+}
+/* 6. Paragraph Icons */
+
+
+.megamenu .paragraph_icon {
+	padding-top: 5px;
+	padding-left: 24px; /*36px */
+	padding-right: 20px;
+	margin-bottom: 5px;
+}
+.megamenu .mini_icon {
+	background-repeat: no-repeat;
+	margin-top: 2px; /* 4px*/
+	margin-left:-24px; /*-34px */
+	float: left;
+	width: 20px;
+	height: 20px;
+}
+.megamenu_dark .megamenu .mini_icon {
+	background-image: url("../img/icons/mini-icons-white.png");
+}
+.megamenu_light .megamenu .mini_icon {
+	background-image: url("../img/icons/mini-icons-black.png");
+}
+.megamenu .ic_archive {
+	background-position: 0 0;
+}
+.megamenu .ic_attachment {
+	background-position: 0 -56px;
+}
+.megamenu .ic_bookmark {
+	background-position: 0 -112px;
+}
+.megamenu .ic_brush {
+	background-position: 0 -168px;
+}
+.megamenu .ic_calc {
+	background-position: 0 -224px;
+}
+.megamenu .ic_calendar {
+	background-position: 0 -280px;
+}
+.megamenu .ic_cancel {
+	background-position: 0 -336px;
+}
+.megamenu .ic_chat {
+	background-position: 0 -392px;
+}
+.megamenu .ic_chats {
+	background-position: 0 -448px;
+}
+.megamenu .ic_cloud {
+	background-position: 0 -504px;
+}
+.megamenu .ic_delete {
+	background-position: 0 -560px;
+}
+.megamenu .ic_documents {
+	background-position: 0 -616px;
+}
+.megamenu .ic_down {
+	background-position: 0 -672px;
+}
+.megamenu .ic_down_circle {
+	background-position: 0 -728px;
+}
+.megamenu .ic_download {
+	background-position: 0 -784px;
+}
+.megamenu .ic_edit {
+	background-position: 0 -840px;
+}
+.megamenu .ic_empty_document {
+	background-position: 0 -896px;
+}
+.megamenu .ic_favorite {
+	background-position: 0 -952px;
+}
+.megamenu .ic_folder {
+	background-position: 0 -1008px;
+}
+.megamenu .ic_fullscreen {
+	background-position: 0 -1064px;
+}
+.megamenu .ic_graph {
+	background-position: 0 -1120px;
+}
+.megamenu .ic_grid {
+	background-position: 0 -1176px;
+}
+.megamenu .ic_left {
+	background-position: 0 -1232px;
+}
+.megamenu .ic_left_circle {
+	background-position: 0 -1288px;
+}
+.megamenu .ic_list {
+	background-position: 0 -1344px;
+}
+.megamenu .ic_lock {
+	background-position: 0 -1400px;
+}
+.megamenu .ic_mail {
+	background-position: 0 -1456px;
+}
+.megamenu .ic_minus {
+	background-position: 0 -1512px;
+}
+.megamenu .ic_ok {
+	background-position: 0 -1568px;
+}
+.megamenu .ic_picture {
+	background-position: 0 -1624px;
+}
+.megamenu .ic_pin {
+	background-position: 0 -1680px;
+}
+.megamenu .ic_plus {
+	background-position: 0 -1736px;
+}
+.megamenu .ic_power {
+	background-position: 0 -1792px;
+}
+.megamenu .ic_print {
+	background-position: 0 -1848px;
+}
+.megamenu .ic_refresh {
+	background-position: 0 -1904px;
+}
+.megamenu .ic_right {
+	background-position: -56px 0;
+}
+.megamenu .ic_right_circle {
+	background-position: -56px -56px;
+}
+.megamenu .ic_settings {
+	background-position: -56px -112px;
+}
+.megamenu .ic_sound {
+	background-position: -56px -168px;
+}
+.megamenu .ic_sync {
+	background-position: -56px -224px;
+}
+.megamenu .ic_tag {
+	background-position: -56px -280px;
+}
+.megamenu .ic_target {
+	background-position: -56px -336px;
+}
+.megamenu .ic_text_document {
+	background-position: -56px -392px;
+}
+.megamenu .ic_time {
+	background-position: -56px -448px;
+}
+.megamenu .ic_unlock {
+	background-position: -56px -504px;
+}
+.megamenu .ic_up {
+	background-position: -56px -560px;
+}
+.megamenu .ic_up_circle {
+	background-position: -56px -616px;
+}
+.megamenu .ic_user {
+	background-position: -56px -672px;
+}
+.megamenu .ic_users {
+	background-position: -56px -728px;
+}
+.megamenu .ic_zoom {
+	background-position: -56px -784px;
+}
+/* 7. Social Icons */
+
+
+.megamenu .social_icon {
+	width: 42px;
+	height: 42px;
+	margin-bottom: 12px;
+ *padding-bottom:18px;
+	float: left;
+	background: url("../img/icons/social-icons.png") no-repeat top left;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+	filter: alpha(opacity=60);
+	opacity:0.6;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+ -webkit-transition: .3s all ease-in;
+ -o-transition: .3s all ease-in;
+ -moz-transition: .3s all ease-in;
+ transition: .3s all ease-in;
+}
+.megamenu .social_icon:hover {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity:1;
+}
+.megamenu .social_icon_delicious {
+	background-position: 0 0;
+}
+.megamenu .social_icon_digg {
+	background-position: 0 -62px;
+}
+.megamenu .social_icon_dribble {
+	background-position: 0 -124px;
+}
+.megamenu .social_icon_ember {
+	background-position: 0 -186px;
+}
+.megamenu .social_icon_facebook {
+	background-position: 0 -248px;
+}
+.megamenu .social_icon_flickr {
+	background-position: 0 -310px;
+}
+.megamenu .social_icon_forrst {
+	background-position: 0 -372px;
+}
+.megamenu .social_icon_google {
+	background-position: 0 -434px;
+}
+.megamenu .social_icon_last_fm {
+	background-position: 0 -496px;
+}
+.megamenu .social_icon_linkedin {
+	background-position: 0 -558px;
+}
+.megamenu .social_icon_my_space {
+	background-position: 0 -620px;
+}
+.megamenu .social_icon_quora {
+	background-position: 0 -682px;
+}
+.megamenu .social_icon_rss {
+	background-position: 0 -744px;
+}
+.megamenu .social_icon_sharethis {
+	background-position: 0 -806px;
+}
+.megamenu .social_icon_skype {
+	background-position: 0 -868px;
+}
+.megamenu .social_icon_stumbleupon {
+	background-position: 0 -930px;
+}
+.megamenu .social_icon_tumblr {
+	background-position: 0 -992px;
+}
+.megamenu .social_icon_twitter {
+	background-position: 0 -1054px;
+}
+.megamenu .social_icon_vimeo {
+	background-position: 0 -1116px;
+}
+.megamenu .social_icon_you_tube {
+	background-position: 0 -1178px;
+}
+/* 8. Form Elements */
+
+
+.megamenu .contact_form {
+	display: block;
+	margin: 0 0 20px 0;
+}
+.megamenu .contact_form label {
+	font-size: 12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.megamenu .form_element {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	width: 90%;
+	padding:6px;
+	margin:12px 0 18px 0;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	-webkit-transition: background-color 0.3s ease-out;
+	-moz-transition: background-color 0.3s ease-out;
+	-o-transition: background-color 0.3s ease-out;
+	-ms-transition: background-color 0.3s ease-out;
+	transition: background-color 0.3s ease-out;
+}
+.megamenu .form_element:focus {
+/*outline:none;*/
+	}
+.megamenu .contact_form textarea {
+	width:94%;
+	height:110px;
+	resize:none;
+}
+.megamenu .contact_form .required {
+	color:#C00;
+}
+.megamenu .contact_form .button {
+	font: bold 11px Sans-Serif;
+	padding: 7px 12px;
+	margin:9px 12px 0 0;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: background-color 0.3s;
+	-moz-transition: background-color 0.3s;
+	-o-transition: background-color 0.3s;
+	-ms-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+.megamenu .contact_form .button:active {
+	position:relative;
+	top:1px;
+}
+.megamenu > li.megamenu_searchform {
+	padding: 7px 12px 0 0;
+}
+.megamenu > li.megamenu_searchform input {
+	font-size: 12px;
+}
+.megamenu > li.megamenu_searchform .megamenu_searchfield {
+	margin-top: 2px;
+	padding: 4px 4px 4px 6px;
+	width: 202px;
+	outline: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+/* 9. Tables */
+
+
+.megamenu .table_light, .megamenu .table_dark {
+	width:100%;
+	padding:0;
+	margin:6px 0 18px 0;
+	font-size:12px;
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+.megamenu .table_light th, .megamenu .table_dark th {
+	text-align:left;
+	padding:12px 9px 12px 9px;
+	font-weight:bold;
+	font-size:12px;
+}
+.megamenu .table_light td,  .megamenu .table_dark td {
+	padding:12px 9px 12px 9px;
+}
+/*  _______________________________________________
+
+    06 DEFAULT THEMES, DARK & LIGHT (COMPULSORY)
+    _______________________________________________  */
+
+
+
+
+/* 1. Dark Menu Bar */
+
+
+.megamenu_dark_bar {
+	background: #e4e4e4;
+}
+.megamenu_dark_bar .megamenu {
+	color:#FFFFFF;/*font-weight: bold;*/
+}
+.megamenu_dark_bar .megamenu > li.active {
+	background: #FAFAFA;
+	color: #000000;
+	border:1px solid #CCCCCC;
+	border-top-width: 0;
+}
+ .megamenu_dark_bar .megamenu > li:hover, {
+ background: #333333;
+ color: #000;
+}
+.megamenu_dark_bar .megamenu > li > a:focus {
+	color: #000;
+}
+.megamenu_dark_bar .megamenu li.noactive {
+	color: #000;/*-webkit-box-shadow:none;
+		-moz-box-shadow:none;
+		box-shadow:none;*/
+	}
+.megamenu_dark_bar .megamenu > li > a {
+	color:#000;/*text-shadow:1px 1px 1px #000000;*/
+	}
+.megamenu_dark_bar .megamenu > li:hover > a {
+	color:#000;
+	background-color: #fafafa;/*text-shadow:1px 1px 1px #000000;*/
+	}
+.megamenu_dark_bar .megamenu > li .megamenu_drop {
+	background:url("../img/dropdown-b.png") no-repeat right 18px;
+}
+.megamenu_dark_bar .megamenu_vertical > li .megamenu_drop {
+	background:url("../img/right.png") no-repeat right 16px;
+}
+.megamenu_dark_bar .megamenu li.megamenu_button,  .megamenu_dark_bar .megamenu li.megamenu_button:hover {
+	background:url("../img/dropdown.png") no-repeat right 19px;
+}
+.megamenu_dark_bar .megamenu li.megamenu_button_active,  .megamenu_dark_bar .megamenu li.megamenu_button_active:hover {
+	background:url("../img/dropdown-up.png") no-repeat right 18px;
+}
+
+.megamenu_light .megamenu li .dropdown_container, .megamenu_light .megamenu li .dropdown_fullwidth, .megamenu_light .megamenu li .dropdown_flyout li ul {
+	border:1px solid #CCCCCC;
+	border-top-width: 0;
+	background: #FAFAFA;
+	color: #000000; /*#212121*/
+}
+.megamenu_container_vertical .megamenu li .dropdown_container, .megamenu_container_vertical .megamenu li .dropdown_fullwidth, .megamenu_container_vertical .megamenu li .dropdown_flyout li ul {
+	border-top-width: 1px;
+}
+.megamenu_light .megamenu li .dropdown_flyout li ul {
+	border:1px solid #CCCCCC;
+}
+.megamenu_light .megamenu li .dropdown_flyout .dropdown_parent {
+	background:url("../img/right-b.png") no-repeat right 9px;
+}
+.megamenu_light .megamenu li .dropdown_flyout .dropdown_parent:hover, .megamenu_light .megamenu li .dropdown_flyout .dropdown_parent.active {
+	background-color:#eeeeee;
+}
+.megamenu_light .megamenu li .dropdown_flyout .dropdown_parent.noactive {
+	background-color:transparent;
+}
+.megamenu_light .megamenu p, .megamenu_light .megamenu h1, .megamenu_light .megamenu h2, .megamenu_light .megamenu h3, .megamenu_light .megamenu h4, .megamenu_light .megamenu h5, .megamenu_light .megamenu h6 {
+	color: #212121;
+	/*text-shadow: 1px 1px 1px #FFFFFF;*/
+}
+.megamenu_light .megamenu p {
+	font-size: 14px;
+	
+}
+.megamenu_light .megamenu > li > div a, .megamenu_light .megamenu li ul li, .megamenu_light .megamenu li ol li {
+	color: #000;
+}
+.megamenu_light .megamenu > li > div a {
+	color: #840e00;
+}
+.megamenu_light .megamenu > li > div a:hover {
+	color:#039;
+	text-decoration: underline;
+}
+.megamenu_light .megamenu > li > div a:focus {
+	color:#039;
+	text-decoration: underline;
+}
+.megamenu_light .megamenu li ul li:hover, .megamenu_light .megamenu li ol li:hover, .megamenu_light .megamenu .blue, .megamenu_light .megamenu .grey, .megamenu_light .megamenu .orange, .megamenu_light .megamenu .dark, .megamenu_light .megamenu .purple {
+	color:#000000; /*color:#444444;*/
+}
+.megamenu_light .megamenu .black_box {
+	background: #212121;
+	color:#ffffff;
+	text-shadow:1px 1px 1px #000000;
+}
+.megamenu_light .megamenu .grey_bg {
+	background: #eeeeee;
+}
+.megamenu_light .megamenu .form_element {
+	-webkit-box-shadow: 0 1px 1px #efefef;
+	-moz-box-shadow: 0 1px 1px #efefef;
+	box-shadow: 0 1px 1px #efefef;
+}
+.megamenu_light .megamenu > li.megamenu_searchform:hover {
+	background: none;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	box-shadow:none;
+}
+.megamenu_light .megamenu hr {
+	border:none;
+	border-bottom:1px solid #ffffff;
+	border-top:1px solid #e4e4e4;
+}
+/* 5. Neutral Colored Elements */
+
+
+/* Form Elements */
+
+.megamenu .form_element {
+	color: #000000;
+	background-color:#fbfbfb;
+	border:1px solid #dddddd;
+}
+.megamenu .form_element:hover {
+	background-color:#fcfcfc;
+}
+.megamenu .form_element:focus {
+	background-color:#ffffff;
+}
+.megamenu .contact_form .required {
+	color:#C00;
+}
+.megamenu .contact_form .button {
+	border: 1px solid #000000;
+	color: #ffffff;
+	background-color: #222222;
+	text-shadow: 0 1px 1px #000000;
+	-webkit-box-shadow: 0 1px 1px #000000;
+	-moz-box-shadow: 0 1px 1px #000000;
+	box-shadow: 0 1px 1px #000000;
+	background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+	background-image: -moz-linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+	background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+	background-image: -ms-linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+	background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+}
+.megamenu .contact_form .button:hover, .megamenu .contact_form .button:focus {
+	color: #ffffff;
+	background-color: #1A1A1A;
+}
+.megamenu .contact_form .button:active {
+	-webkit-box-shadow: 0 0 1px #000000;
+	-moz-box-shadow: 0 0 1px #000000;
+	box-shadow: 0 0 1px #000000;
+}
+.megamenu > li.megamenu_searchform .megamenu_searchfield {
+	background: #fff;
+	border: solid 1px #bcbbbb;
+	-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+	-moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+/* Tables */
+
+.megamenu .table_light {
+	border:1px solid #cbcbcb;
+	border-bottom:none;
+}
+.megamenu .table_light th {
+	color:#3A3A3A;
+	border-bottom:1px solid #cbcbcb;
+	background:#F5F5F5;
+}
+.megamenu .table_light td {
+	border-bottom:1px solid #cbcbcb;
+	background:#fff;
+	color:#888;
+}
+.megamenu .table_dark {
+	border:1px solid #000;
+	border-bottom:none;
+}
+.megamenu .table_dark th {
+	color:#FFF;
+	border-bottom:1px solid #000;
+	background:#0D0D0D;
+}
+.megamenu .table_dark td {
+	border-bottom:1px solid #000;
+	background:#0F0F0F;
+	color:#DDD;
+}
+
+
+
+
+
+/*  _______________________________________________
+
+    09 MOBILE DEVICES
+    _______________________________________________  */
+
+
+@media only screen and (min-width: 768px) and (max-width: 984px) {
+
+
+ .megamenu_container .megamenu > li.right {
+ margin-right:-1px;
+}
+
+ .megamenu_container .megamenu > li .megamenu_drop {
+ padding-right:25px; 
+}
+.megamenu_dark_bar .megamenu > li .megamenu_drop {
+	background:url("../img/dropdown-b.png") no-repeat right 18px;
+	color:#000;
+}
+.megamenu_dark_bar .megamenu > li .no_megamenu_drop {
+	color:#000;
+}
+
+.megamenu > li > a:first-child {
+	display:block;
+	padding-left: 10px;
+}
+
+
+
+
+}
+ @media only screen and (max-width:767px) {
+ .megamenu_container {
+ height: auto;
+}
+ .megamenu_container .megamenu > li,  .megamenu_container .megamenu > li:hover,  .megamenu_container .megamenu > li.right,  .megamenu_container .megamenu > li.right:hover {
+ float:none;
+ width:auto;
+ padding-right:0;
+ margin-right:0;
+}
+ .megamenu_container .megamenu > li > a {
+ padding: 16px 5px 15px 15px;
+}
+ .megamenu_container .megamenu li.right a {
+ margin-right:0;
+}
+ .megamenu_container .megamenu li:hover .dropdown_container,  .megamenu_container .megamenu li:hover .dropdown_fullwidth,  .megamenu_container .megamenu li:hover .dropdown_right {
+ top:auto;
+ left:-1px;
+}
+ .megamenu_container .megamenu .dropdown_1column,  .megamenu_container .megamenu .dropdown_2columns,  .megamenu_container .megamenu .dropdown_3columns,  .megamenu_container .megamenu .dropdown_4columns,  .megamenu_container .megamenu .dropdown_5columns,  .megamenu_container .megamenu .dropdown_6columns,  .megamenu_container .megamenu .dropdown_7columns,  .megamenu_container .megamenu .dropdown_8columns,  .megamenu_container .megamenu .dropdown_9columns,  .megamenu_container .megamenu .dropdown_10columns,  .megamenu_container .megamenu .dropdown_11columns,  .megamenu_container .megamenu .dropdown_12columns {
+ width: 100%;
+ padding-left:0;
+ padding-right:0;
+}
+ .megamenu_container .megamenu .col_1,  .megamenu_container .megamenu .col_2,  .megamenu_container .megamenu .col_3,  .megamenu_container .megamenu .col_4,  .megamenu_container .megamenu .col_5,  .megamenu_container .megamenu .col_6,  .megamenu_container .megamenu .col_7,  .megamenu_container .megamenu .col_8,  .megamenu_container .megamenu .col_9,  .megamenu_container .megamenu .col_10,  .megamenu_container .megamenu .col_11,  .megamenu_container .megamenu .col_12 {
+ width:92%;
+ margin-left: 4%;
+ margin-right: 4%;
+}
+ .megamenu_container .megamenu > li.megamenu_searchform .megamenu_searchfield {
+ margin-left: 10px;
+ margin-bottom: 10px;
+}
+ .megamenu .dropdown_flyout,  .megamenu .dropdown_flyout .dropdown_flyout_level {
+ position: relative;
+ left:auto;
+ top:auto;
+ padding: 0;
+ margin: 0 4% 0 4%;
+}
+ .megamenu .dropdown_flyout li,  .megamenu .dropdown_flyout ul li {
+ width: 100%;
+ padding: 3px 0 3px 0;
+}
+ .megamenu .dropdown_flyout li:hover > .dropdown_flyout_level {
+ left:auto;
+ top:auto;
+}
+ .megamenu .dropdown_flyout li:hover > .dropdown_flyout_level_left {
+ left:auto;
+ right:auto;
+}
+ .megamenu_dark .megamenu li .dropdown_flyout li ul,  .megamenu_light .megamenu li .dropdown_flyout li ul {
+ border:none;
+ background: none;
+}
+
+ .megamenu_light .megamenu li .dropdown_flyout .dropdown_parent {
+ background:url("../img/dropdown-b.png") no-repeat right 9px;
+}
+ .megamenu_dark .megamenu li .dropdown_flyout .dropdown_parent:hover,  .megamenu_dark .megamenu li .dropdown_flyout .dropdown_parent.active,  .megamenu_light .megamenu li .dropdown_flyout .dropdown_parent:hover,  .megamenu_light .megamenu li .dropdown_flyout .dropdown_parent.active {
+ background-color:transparent;
+}
+
+}
+ @media (max-width: 800px) {
+.page_wrapper .index {
+ width: 100%;
+ margin-right: 0%;
+}
+.megamenu_button {
+ background-color: #000000 !important;
+ color: #ffffff;
+  font-weight: bold;
+}
+ .megamenu_dark_bar .megamenu {
+ color:#FFFFFF;
+
+}
+ .megamenu_dark_bar .megamenu > li.active {
+ background: #ffffff;
+ color: #000000;
+}
+
+ .megamenu_dark_bar .megamenu > li > a:focus {
+ color: #999;
+}
+ .megamenu_dark_bar .megamenu li.noactive {
+ background:none;
+/*-webkit-box-shadow:none;
+		-moz-box-shadow:none;
+		box-shadow:none;*/
+	}
+ .megamenu_dark_bar .megamenu > li > a {
+ color:#FFFFFF;
+ font-style:normal;
+/*text-shadow:1px 1px 1px #000000;*/
+	}
+ .megamenu_dark_bar .megamenu > li:hover > a {
+ color:#000;
+/*text-shadow:1px 1px 1px #000000;*/
+	}
+ .megamenu_dark_bar .megamenu > li .megamenu_drop {
+ background:url("../img/dropdown-b.png") no-repeat right 18px;
+ background-color: #e4e4e4;
+ /*border-bottom: solid 1px #999;*/
+ color:#000;
+}
+.megamenu_dark_bar .megamenu > li .no_megamenu_drop {
+	color:#000!important;
+}
+ .megamenu_dark_bar .megamenu_vertical > li .megamenu_drop {
+ background:url("../img/right.png") no-repeat right 16px;
+ color:#FFFFFF;
+}
+ .megamenu_dark_bar .megamenu li.megamenu_button,  .megamenu_dark_bar .megamenu li.megamenu_button:hover {
+ background:url("../img/dropdown.png") no-repeat right 19px;
+ color: #000;
+}
+ .megamenu_dark_bar .megamenu li.megamenu_button_active,  .megamenu_dark_bar .megamenu li.megamenu_button_active:hover {
+ background:url("../img/dropdown-up.png") no-repeat right 18px;
+ color: #000;
+}
+.megamenu_right {
+    margin-left: 0px !important;
+}
+.megamenu_dark_bar .megamenu > li.megamenu_button:hover > a {
+	color:#fff;
+	background-color: black!important;
+	 background:url("../img/dropdown.png") no-repeat right 19px;
+	}
+.megamenu_dark_bar .megamenu li.megamenu_button,  .megamenu_dark_bar .megamenu li.megamenu_button:hover {
+	background-color: black !important;
+}
+.megamenu_dark_bar .megamenu li.megamenu_button,  .megamenu_dark_bar .megamenu li.megamenu_button:hover {
+	background-color: black !important;
+}
+.megamenu_dark_bar .megamenu li.megamenu_button_active,  .megamenu_dark_bar .megamenu li.megamenu_button_active:hover {
+	background-color: black !important;
+}
+}
