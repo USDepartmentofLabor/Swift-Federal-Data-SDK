@@ -21,6 +21,7 @@ class GovDataRequest {
     var APIHost = ""
     var APIURL = ""
     var responseFormat = "JSON"
+    var timeOut = 60.0
     
     init(APIKey: String, APIHost: String, APIURL:String) {
         self.APIKey = APIKey
@@ -29,7 +30,7 @@ class GovDataRequest {
     }
     
     
-    func callAPIMethod (#method: String, arguments: Dictionary<String,String>, timeOut: Double) {
+    func callAPIMethod (#method: String, arguments: Dictionary<String,String>) {
         // Construct the base url based on the provided information
         var url = APIHost + APIURL + "/" + method
         // Start building the query string
@@ -103,17 +104,16 @@ class GovDataRequest {
         if responseFormat == "JSON" {
             // Send the request to the API and parse the JSON
             var urlToPackage = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-            println(urlToPackage)
             var urlToSend: NSURL = NSURL(string: urlToPackage)
-            var session = NSURLSession.sharedSession()
+            var apiSessionConfiguration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            apiSessionConfiguration.timeoutIntervalForRequest = timeOut
+            var session = NSURLSession(configuration:apiSessionConfiguration)
             var request = NSMutableURLRequest(URL:urlToSend)
-            //request.setTimeoutInterval(timeOut)
             request.addValue("application/json",forHTTPHeaderField:"Accept")
             var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                println("Task completed")
                 if(error) {
                     // if there is an error in the request, print it to the console
-                    //self.delegate?.didCompleteWithError("Error, Will Robinson")
+                    self.delegate?.didCompleteWithError(error.localizedDescription)
                     //println(error.localizedDescription)
                     println("oops!")
                 }
