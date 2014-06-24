@@ -9,7 +9,7 @@ Federal Data SDK built in the Swift programming language
 ### Documentation
 Documentation for this SDK can be found at [http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK](http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK).
 
-Sample code for this SDK is coming soon.
+Sample code for this SDK can be found at [http://usdepartmentoflabor.github.io/Swift-Sample-App/](http://usdepartmentoflabor.github.io/Swift-Sample-App/).
 
 ## Federal API compatibility
 This SDK should work the following APIs.  We encourage you to test this with the APIs below as well as other federal APIs:
