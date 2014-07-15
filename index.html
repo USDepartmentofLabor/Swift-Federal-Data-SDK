@@ -112,7 +112,47 @@ Returns to the delegate the API response, parsed and presented as an NSDictionar
 			<td>The parsed API response</td>
 		</tr>
 	</tbody>
+</table><br>
+<h3 class="subtitle">didCompleteWithDictionary(results:)</h3>
+Returns to the delegate the API response, parsed and presented as an NSDictionary object.<br>
+<pre class="prettyprint">didCompleteWithXML(results: XMLIndexer)</pre>
+<h4 class="subtitle">Return Values</h4>
+<table>
+	<thead>
+		<tr>
+			<th width="100">Name</th>
+			<th width="100">Data Type</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>results</td>
+			<td>XMLIndexer</td>
+			<td>The parsed API response.  How to access your data:
+			<pre class="prettyprint">// will return "Test Title Header"
+xml["root"]["header"]["title"].element?.text
+
+// will return "Ralls, Kim"
+xml["root"]["catalog"]["book"][1]["author"].element?.text
+
+// will return "bk102"
+xml["root"]["catalog"]["book"][1].element?.attributes["id"]
+
+// will return "Computer, Fantasy, Fantasy"
+", ".join(xml["root"]["catalog"]["book"].all.map { elem in elem["genre"].element!.text! })
+
+// error handling
+switch xml["root"]["what"]["header"]["foo"] {
+case .Element(let elem):
+  // everything is good, code away!
+case .Error(let error):
+  // error is an NSError instance that you can deal with
+}</pre></td>
+		</tr>
+	</tbody>
 </table>
+
 </div>
 </div>
   	<div class='limiter pad0y pad4x clearfix'>
