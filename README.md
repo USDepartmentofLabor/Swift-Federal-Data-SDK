@@ -3,6 +3,8 @@ Swift-Federal-Data-SDK
 
 Federal Data SDK built in the Swift programming language
 
+Until the Swift language becomes more stable, consider this a beta release.  See the Release notes for more information.
+
 ### Documentation
 Documentation for this SDK can be found at [http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK](http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK).
 
