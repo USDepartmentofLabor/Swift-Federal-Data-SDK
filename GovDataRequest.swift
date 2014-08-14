@@ -116,15 +116,14 @@ class GovDataRequest {
             var err: NSError?
             if self.responseFormat == "JSON" {
                 var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
-                if(err?) {
+                if(err != nil) {
                     // If there is an error parson JSON, print it to the console
                     NSLog ("Error parsing the JSON")
                 }
                 self.delegate?.didCompleteWithDictionary(jsonResult)
             } else if self.responseFormat == "XML" {
-                let parser = SWXMLHash()
                 var dataString = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let xml = parser.parse(dataString)
+                let xml = SWXMLHash.parse(dataString)
                 self.delegate?.didCompleteWithXML(xml)
             }
             })
