@@ -96,39 +96,42 @@ class GovDataRequest {
             }
         }
         
-        // Send the request to the API and parse
-        var urlToPackage = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        println(urlToPackage)
-        var urlToSend: NSURL = NSURL(string: urlToPackage)
-        var apiSessionConfiguration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        apiSessionConfiguration.timeoutIntervalForRequest = timeOut
-        var session = NSURLSession(configuration:apiSessionConfiguration)
-        var request = NSMutableURLRequest(URL:urlToSend)
-        request.addValue("application/json",forHTTPHeaderField:"Accept")
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            println("Task completed")
-            if(error) {
-                // if there is an error in the request, print it to the console
-                self.delegate?.didCompleteWithError(error.localizedDescription)
-                //println(error.localizedDescription)
-                println("oops!")
-            }
-            var err: NSError?
-            if self.responseFormat == "JSON" {
-                var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
-                if(err != nil) {
-                    // If there is an error parson JSON, print it to the console
-                    NSLog ("Error parsing the JSON")
+        
+        
+            // Send the request to the API and parse
+            var urlToPackage = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            println(urlToPackage)
+            var urlToSend: NSURL = NSURL(string: urlToPackage!)
+            var apiSessionConfiguration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            apiSessionConfiguration.timeoutIntervalForRequest = timeOut
+            var session = NSURLSession(configuration:apiSessionConfiguration)
+            var request = NSMutableURLRequest(URL:urlToSend)
+            request.addValue("application/json",forHTTPHeaderField:"Accept")
+            var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                println("Task completed")
+                if((error) != nil) {
+                    // if there is an error in the request, print it to the console
+                    self.delegate?.didCompleteWithError(error.localizedDescription)
+                    //println(error.localizedDescription)
+                    println("oops!")
                 }
-                self.delegate?.didCompleteWithDictionary(jsonResult)
-            } else if self.responseFormat == "XML" {
-                var dataString = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let xml = SWXMLHash.parse(dataString)
-                self.delegate?.didCompleteWithXML(xml)
-            }
-            })
-        task.resume()
+                var err: NSError?
+                if self.responseFormat == "JSON" {
+                    var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+                    if(err != nil) {
+                        // If there is an error parson JSON, print it to the console
+                        NSLog ("Error parsing the JSON")
+                    }
+                    self.delegate?.didCompleteWithDictionary(jsonResult)
+                } else if self.responseFormat == "XML" {
+                    //let parser = SWXMLHash()
+                    var dataString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    let xml = SWXMLHash.parse(dataString)
+                    self.delegate?.didCompleteWithXML(xml)
+                }
+                })
+            task.resume()
     }
-    
+
    
 }
