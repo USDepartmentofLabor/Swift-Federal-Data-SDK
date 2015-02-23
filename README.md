@@ -8,6 +8,8 @@ Until the Swift language becomes more stable, consider this a beta release.  See
 ### Xcode 6 Beta 6 Notice
 If you've recently upgraded to Beta 6 and you're getting weird errors, [follow the steps outlined here](http://rshankar.com/apple-mach-o-linker-error-xcode-6-beta-6/).
 
+### Swift 1.2 Notice
+This SDK has been updated for Swift 1.2.  You may encounter errors with previous versions of Xcode.  For earlier versions of Swift, use the [https://github.com/USDepartmentofLabor/Swift-Federal-Data-SDK/releases/tag/v1.0](1.0.0) release.
 
 ### Documentation
 Documentation for this SDK can be found at [http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK](http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK).
