@@ -12,7 +12,7 @@ If you've recently upgraded to Beta 6 and you're getting weird errors, [follow t
 This SDK has been updated for Swift 1.2.  You may encounter errors with previous versions of Xcode.  For earlier versions of Swift, use the [https://github.com/USDepartmentofLabor/Swift-Federal-Data-SDK/releases/tag/v1.0](1.0.0) release.
 
 ### Documentation
-Documentation for this SDK can be found at [http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK](http://USDepartmentofLabor.github.io/Swift-Federal-Data-SDK).
+Documentation for this SDK can be found at [http://usdepartmentoflabor.github.io/Swift-Federal-Data-SDK/](http://usdepartmentoflabor.github.io/Swift-Federal-Data-SDK/).
 
 Sample code for this SDK can be found at [http://usdepartmentoflabor.github.io/Swift-Sample-App/](http://usdepartmentoflabor.github.io/Swift-Sample-App/).
 
@@ -20,7 +20,7 @@ Sample code for this SDK can be found at [http://usdepartmentoflabor.github.io/S
 This SDK should work the following APIs.  We encourage you to test this with the APIs below as well as other federal APIs:
 
 ### Business USA
-* [BusinessUSA Business Resource API](http://business.usa.gov/apis) - Data is received, but unusual first character trips-up the parser.
+* [BusinessUSA Business Resource API](http://business.usa.gov/developer) - Data is received, but unusual first character trips-up the parser.
 
 ### Department of Commerce
 #### Census Bureau
@@ -43,19 +43,19 @@ This SDK should work the following APIs.  We encourage you to test this with the
 * [Healthdata.gov API](http://www.healthdata.gov/developer)
 
 #### National Center for Health Statistics
-* [Health Indicators Warehouse](http://healthindicators.gov/Developers/)
+* [Health Indicators Warehouse](http://www.healthindicators.gov/Developers/)
 
 #### National Health Information Center
-* [Healthfinder.gov API](http://healthfinder.gov/developers/)
+* [Healthfinder.gov API](http://healthfinder.gov/Developer/)
 
 #### National Institutes of Health
 * [DailyMed](http://dailymed.nlm.nih.gov/dailymed/help.cfm)
-* [DIRLINE](http://dirline.nlm.nih.gov/dirlineapi/DIRLINEWebService.html)
+* [DIRLINE](https://sis.nlm.nih.gov/sispagenotfound.html)
 * [Genetics Home Reference](http://ghr.nlm.nih.gov/LinkingTo)
-* [MedlinePlus Connect](http://www.nlm.nih.gov/medlineplus/connect/service.html)
-* [MedlinePlus HealthTopics](http://www.nlm.nih.gov/medlineplus/webservices.html)
+* [MedlinePlus Connect](https://www.nlm.nih.gov/medlineplus/connect/service.html)
+* [MedlinePlus HealthTopics](https://www.nlm.nih.gov/medlineplus/webservices.html)
 * [National Drug File-Reference Terminology (NDF-RT)](http://rxnav.nlm.nih.gov/NdfrtAPI.html)
-* [Pillbox (needs verification)](http://pillbox.nlm.nih.gov/API-documentation.html)
+* [Pillbox (needs verification)](http://pillbox.nlm.nih.gov/developer.html)
 * [RxNorm](http://rxnav.nlm.nih.gov/RxNormAPI.html)
 * [RxTerms](http://rxnav.nlm.nih.gov/RxTermsAPI.html)
 
@@ -70,52 +70,52 @@ This SDK should work the following APIs.  We encourage you to test this with the
 * [Airport Status and Delay API](http://services.faa.gov/)
 
 #### Federal Motor Carrier Safety Administration
-* [FMCSA API](https://mobile.fmcsa.dot.gov/developer)
+* [FMCSA API](https://mobile.fmcsa.dot.gov/developer/)
 
 ### EPA
-* [Envirofacts API](http://www.epa.gov/developer/)
+* [Envirofacts API](http://www2.epa.gov/developers)
 
 ### FCC
 * [Public Inspection Files](https://stations.fcc.gov/developer/)
-* [Census Block Conversions](http://www.fcc.gov/developers/census-block-conversions-api)
+* [Census Block Conversions](https://www.fcc.gov/developers/census-block-conversions-api)
 
 ### Federal Infrastructure Projects Permitting Dashboard (beta)
-* [performance.gov API](http://permits.performance.gov/developers-api)
+* [performance.gov API](https://www.permits.performance.gov/developers-api)
 
 ### Federal Reserve Bank of St. Louis
-* [FRED](http://api.stlouisfed.org/)
+* [FRED](https://api.stlouisfed.org/)
 
 ### Integrated Taxonomic Information System
 * [ITIS API](http://www.itis.gov/ws_description.html)
 
 ### Millennium Challenge Corporation
-* [Selection Indicators API](http://data.mcc.gov/developer/)
+* [Selection Indicators API](https://data.mcc.gov/developer/)
 
 ### NASA
-* [NASA API](http://data.nasa.gov/api-info/)
+* [NASA API](https://data.nasa.gov/developer)
 
 ### National Archives and Records Administration
-* [Federal Register API](http://www.federalregister.gov/blog/learn/developers)
+* [Federal Register API](https://www.federalregister.gov/blog/learn/developers)
 
 ### National Broadband Map
 * [All APIs](http://www.broadbandmap.gov/developer/)
 
 ### Office of Management and Budget
-* [usaspending.gov API](http://www.usaspending.gov/data?tab=API)
+* [usaspending.gov API](https://www.usaspending.gov/data?tab=API)
 
 ### Small Business Administration
-* [Business Licenses & Permits](http://www.sba.gov/about-sba-services/7615)
-* [Loans & Grants Search](http://www.sba.gov/about-sba-services/7616)
+* [Business Licenses & Permits](https://www.sba.gov/taxonomy/term/7615)
+* [Loans & Grants Search](https://www.sba.gov/taxonomy/term/7616)
 * [Recommended Sites](http://www.sba.gov/about-sba-services/7630)
 * [U.S. City and County Web Data](http://www.sba.gov/about-sba-services/7617)
 
 ### Small Business Innovation Research (SBIR) program
-* [SBIR API](http://www.sbir.gov/apis)
+* [SBIR API](https://www.sbir.gov/apis)
 
 ### USA.gov
 * [go.USA.gov URL shortener](https://go.usa.gov/api)
-* [Mobile App Gallery](http://www.usa.gov/About/developer-resources/mobile-app-gallery/index.shtml)
-* [Social Media Registry](http://www.usa.gov/About/developer-resources/social-media-registry.shtml) (returns HTML)
+* [Mobile App Gallery](https://github.com/usagov/Federal-Mobile-Product-API-Documentation)
+* [Social Media Registry](https://github.com/usagov/Social-Media-Registry-API-Documentation) (returns HTML)
 
 ### White House
-* [Policy Snapshots JSON Feed](http://www.whitehouse.gov/developers)
+* [Policy Snapshots JSON Feed](https://www.whitehouse.gov/developers)
