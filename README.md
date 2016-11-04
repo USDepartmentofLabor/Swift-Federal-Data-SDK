@@ -5,6 +5,9 @@ Federal Data SDK built in the Swift programming language
 
 Until the Swift language becomes more stable, consider this a beta release.  See the Release notes for more information.
 
+### Updated for Swift 3
+This SDK has been tested in Swift 3.0.1
+
 ### Xcode 6 Beta 6 Notice
 If you've recently upgraded to Beta 6 and you're getting weird errors, [follow the steps outlined here](http://rshankar.com/apple-mach-o-linker-error-xcode-6-beta-6/).
 
