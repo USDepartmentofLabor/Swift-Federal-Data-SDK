@@ -16,7 +16,7 @@ protocol GovDataRequestProtocol {
     func didComplete(results: NSString)
 }
 
-class GovDataRequest : NSObject, NSURLSessionDelegate {
+class GovDataRequest : NSObject, URLSessionDelegate {
     
     var delegate: GovDataRequestProtocol? = nil
     
@@ -26,7 +26,7 @@ class GovDataRequest : NSObject, NSURLSessionDelegate {
     var responseFormat = "JSON"
     var timeOut = 60.0
     
-    let URL_API_V1 = "http://api.dol.gov"
+    let URL_API_V1 = "https://api.dol.gov"
     let URL_API_V2 = "https://data.dol.gov"
     
     init(APIKey: String, APIHost: String, APIURL:String) {
@@ -36,7 +36,7 @@ class GovDataRequest : NSObject, NSURLSessionDelegate {
     }
     
     
-    func callAPIMethod (#method: String, arguments: Dictionary<String,String>) {
+    func callAPIMethod (method: String, arguments: Dictionary<String,String>) {
         // Construct the base url based on the provided information
         var url = APIHost + APIURL + "/" + method
         // Start building the query string
@@ -56,7 +56,7 @@ class GovDataRequest : NSObject, NSURLSessionDelegate {
             queryString = "?token=" + APIKey
         default:
             // do nothing for now
-            println("doing nothing for now")
+            print("doing nothing for now")
         }
         
         //Construct the arguments part of the query string
@@ -70,19 +70,19 @@ class GovDataRequest : NSObject, NSURLSessionDelegate {
                 case "format", "query", "region", "locality", "skipcount":
                     queryString += "&" + argKey + "=" + argValue
                 default:
-                    println("nothing to see here")
+                    print("nothing to see here")
                 }
             case URL_API_V2:
                 queryString += "/" + argKey + "/" + argValue
             case "http://go.usa.gov":
                 // go.usa.gov requires that the apiKey be the 2nd argument
-                if count(queryString) == 0 {
+                if queryString == "" {
                     queryString += "?" + argKey + "=" + argValue + "&apiKey=" + APIKey
                 } else {
                     queryString += "&" + argKey + "=" + argValue
                 }
             default:
-                if count(queryString) == 0 {
+                if queryString == "" {
                     queryString += "?" + argKey + "=" + argValue
                 } else {
                     queryString += "&" + argKey + "=" + argValue
@@ -92,13 +92,13 @@ class GovDataRequest : NSObject, NSURLSessionDelegate {
         }
         
         //If there are arguments, append them to the url
-        if count(queryString) > 0 {
+        if queryString != "" {
             url += queryString
         }
         
         //DOT FMCSA requires that the key be placed at the end.
         if APIHost == "https://mobile.fmcsa.dot.gov" {
-            if count(queryString) > 0 {
+            if queryString != "" {
                 url += "&webKey=" + APIKey
             } else {
                 url += "?webKey=" + APIKey
@@ -108,58 +108,84 @@ class GovDataRequest : NSObject, NSURLSessionDelegate {
         
         
         // Send the request to the API and parse
-        var urlToPackage = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        println(urlToPackage)
-        var urlToSend: NSURL = NSURL(string: urlToPackage!)!
-        var apiSessionConfiguration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        var urlToPackage = url //.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        print(urlToPackage)
+        var urlToSend: NSURL = NSURL(string: urlToPackage)!
+        var apiSessionConfiguration: URLSessionConfiguration = URLSessionConfiguration.default
         apiSessionConfiguration.timeoutIntervalForRequest = timeOut
-        var session = NSURLSession(configuration: apiSessionConfiguration, delegate: self, delegateQueue:NSOperationQueue.mainQueue())
-        var request = NSMutableURLRequest(URL:urlToSend)
+        //var session = URLSession(session: , didReceiveChallenge: self, completionHandler: OperationQueue.mainQueue()
+        var session = URLSession(configuration: apiSessionConfiguration, delegate: self, delegateQueue:OperationQueue.main)
+        var request = NSMutableURLRequest(url:urlToSend as URL)
         request.addValue("application/json",forHTTPHeaderField:"Accept")
         if (APIHost == URL_API_V2) {
             request.addValue(APIKey, forHTTPHeaderField: "X-API-KEY")
         }
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            println("Task completed")
+        var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+            print("Task completed")
             if((error) != nil) {
                 // if there is an error in the request, print it to the console
-                self.delegate?.didCompleteWithError(error.localizedDescription)
+                self.delegate?.didCompleteWithError(errorMessage: (error?.localizedDescription)!)
                 //println(error.localizedDescription)
-                println("oops!")
+                print("oops!")
             }
             var err: NSError?
+            print("*********")
+            print("About to try to parse")
+            print("*********")
             if self.responseFormat == "JSON" {
-                if let jsonResult: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) {
-                    if(err != nil) {
-                        // If there is an error parson JSON, print it to the console
-                        NSLog ("Error parsing the JSON")
+//                if let jsonResult: Any = JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) {
+                do {
+                    if let jsonResult: Any = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) {
+                        if(err != nil) {
+                            // If there is an error parson JSON, print it to the console
+                            NSLog ("Error parsing the JSON")
+                        }
+                        if jsonResult is NSDictionary {
+                            print("*********")
+                            print("Dictionary")
+                            print("*********")
+                            self.delegate?.didCompleteWithDictionary(results: jsonResult as! NSDictionary)
+                        }
+                        else if jsonResult is NSArray {
+                            print("*********")
+                            print("Array")
+                            print("*********")
+                            self.delegate?.didCompleteWithArray(results: jsonResult as! NSArray)
+                        }
+                        else {
+                            print("*********")
+                            print("Something else")
+                            print("*********")
+                            //return Object
+                            self.delegate?.didComplete(results: jsonResult as! NSString)
+                        }
                     }
-                    if jsonResult is NSDictionary {
-                        self.delegate?.didCompleteWithDictionary(jsonResult as! NSDictionary)
-                    }
-                    else if jsonResult is NSArray {
-                        self.delegate?.didCompleteWithArray(jsonResult as! NSArray)
-                    }
-                    else {
-                        //return Object
-                        self.delegate?.didComplete(jsonResult as! NSString)
-                    }
+                } catch {
+                    NSLog ("Error parsing the JSON")
+                    
                 }
                 
             } else if self.responseFormat == "XML" {
                 //let parser = SWXMLHash()
-                var dataString = NSString(data: data, encoding: NSUTF8StringEncoding)
-                let xml = SWXMLHash.parse(data)
-                self.delegate?.didCompleteWithXML(xml)
+                var dataString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                let xml = SWXMLHash.parse(data!)
+                self.delegate?.didCompleteWithXML(results: xml)
+            } else {
+                print("*********")
+                print("Neither JSON nor XML")
+                print("*********")
             }
+            print("*********")
+            print("Outside the if")
+            print("*********")
         })
         task.resume()
     }
-    
-    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-        completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust))
+ 
+/*    private func URLSession(session: URLSession, didReceiveChallenge challenge: URLAuthenticationChallenge, completionHandler: (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        completionHandler(URLSession.AuthChallengeDisposition.UseCredential, URLCredential(forTrust: challenge.protectionSpace.serverTrust))
     }
-    
+ */
     
     
 }
