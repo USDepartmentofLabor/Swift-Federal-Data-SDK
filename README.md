@@ -1,5 +1,5 @@
 >[!WARNING]
->This repository has been archived and is no longer maintained. The code is provided for historical reference and may contain unpatched or unknown vulnerabilities. It should ***not*** be used in production systems.
+>**END OF LIFE NOTICE:** This project has reached end-of-life and is no longer maintained. No further updates or security patches will be provided. The code is provided for historical reference only and may contain unpatched or unknown vulnerabilities. It should ***not*** be used in any system or environment.
 
 Swift-Federal-Data-SDK
 ======================
